@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoCare Garage - Book Service</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="brand"><i class="fa-solid fa-car-side"></i> AutoCare<span>.</span> Garage</div>
+    <nav>
+      <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="service.html" class="active"><i class="fa-solid fa-calendar-plus"></i> Book Service</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="card">
+      <h1 class="form-title">Vehicle Service Booking</h1>
+      <p class="form-subtitle">Fill in your details and choose services. Your estimate updates as you go.</p>
+
+      <form id="serviceForm" action="process_service.php" method="POST" novalidate>
+        <div class="form-grid">
+
+          <div class="section-title">Customer details</div>
+
+          <div class="field">
+            <label for="customerName">Customer name</label>
+            <input type="text" id="customerName" name="customer_name" placeholder="e.g. Jane Wanjiku">
+            <div class="error" id="errName"></div>
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone number</label>
+            <input type="text" id="phone" name="phone" maxlength="10" placeholder="10 digits">
+            <div class="error" id="errPhone"></div>
+          </div>
+
+          <div class="field full">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com">
+            <div class="error" id="errEmail"></div>
+          </div>
+
+          <div class="section-title">Vehicle details</div>
+
+          <div class="field">
+            <label for="regNumber">Registration number</label>
+            <input type="text" id="regNumber" name="reg_number" placeholder="e.g. KDA 123A">
+            <div class="error" id="errReg"></div>
+          </div>
+
+          <div class="field">
+            <label for="vehicleType">Vehicle type</label>
+            <select id="vehicleType" name="vehicle_type">
+              <option value="">Select vehicle type</option>
+              <option value="Saloon Car">Saloon Car</option>
+              <option value="SUV">SUV</option>
+              <option value="Pickup">Pickup</option>
+              <option value="Van">Van</option>
+            </select>
+            <div class="info hidden" id="vehicleInfo"></div>
+            <div class="error" id="errType"></div>
+          </div>
+
+          <div class="field">
+            <label for="vehicleModel">Vehicle model</label>
+            <input type="text" id="vehicleModel" name="vehicle_model" placeholder="e.g. Toyota Prado">
+            <div class="error" id="errModel"></div>
+          </div>
+
+          <div class="field">
+            <label for="year">Year of manufacture</label>
+            <input type="number" id="year" name="year" min="1980" max="2026" placeholder="e.g. 2015">
+            <div class="warning hidden" id="oldVehicleWarning">
+              Vehicle manufactured before 2010. Our technician will check its condition during service.
+            </div>
+            <div class="error" id="errYear"></div>
+          </div>
+
+          <div class="field full">
+            <label for="serviceDate">Preferred service date</label>
+            <input type="date" id="serviceDate" name="service_date">
+            <div class="error" id="errDate"></div>
+          </div>
+
+          <div class="section-title">Services</div>
+
+          <div class="field full">
+            <div class="services">
+              <label><input type="checkbox" name="services[]" value="Engine Oil Change" data-price="3000"> Engine Oil Change · KSh 3,000</label>
+              <label><input type="checkbox" name="services[]" value="Brake Inspection" data-price="2000"> Brake Inspection · KSh 2,000</label>
+              <label><input type="checkbox" name="services[]" value="Wheel Alignment" data-price="2500"> Wheel Alignment · KSh 2,500</label>
+              <label><input type="checkbox" name="services[]" value="Computer Diagnosis" data-price="3500"> Computer Diagnosis · KSh 3,500</label>
+              <label><input type="checkbox" name="services[]" value="Full Service" data-price="8000"> Full Service · KSh 8,000</label>
+              <label><input type="checkbox" name="services[]" value="Tyre Balancing" data-price="2000"> Tyre Balancing · KSh 2,000</label>
+            </div>
+            <div class="error" id="errServices"></div>
+          </div>
+
+          <div class="full">
+            <div class="summary">
+              <div class="summary-row">
+                <h4 style="margin:0;">Selected services</h4>
+                <span class="count-badge"><span id="serviceCount">0</span> selected</span>
+              </div>
+              <ul id="selectedList"><li>None</li></ul>
+              <div class="total-label">Estimated total</div>
+              <div class="total" id="estimatedTotal">KSh 0</div>
+            </div>
+          </div>
+
+          <div class="full submit-row">
+            <button type="submit" class="btn"><i class="fa-solid fa-paper-plane"></i> Submit service request</button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer>&copy; 2026 AutoCare Garage. All rights reserved.</footer>
+  <script src="js/script.js"></script>
+</body>
+</html>
